@@ -1,4 +1,4 @@
-01_existing_genres.sql
+# 01_existing_genres.sql
 -- Task: Identify existing film genres in the category table
 -- Objective: Determine which genres Rockbuster currently offers
 -- Output: List of category IDs and corresponding genre names

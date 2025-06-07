@@ -35,4 +35,8 @@ It was provided as part of the Rockbuster Stealth case study project and loaded 
 - Graphs and visualisations created using Tableau can be viewed here:
 - [Tableau Public Link] (https://public.tableau.com/app/profile/leyla.efe/viz/RockbusterDataAnalysisProjectv2/Story1?publish=yes)
 
-- *Note: These visualisations were used to support the final presentation, which was assembled in PowerPoint for delivery to the Rockbuster Stealth Management Board.*
+- ### Powerpoint Presentation
+- - Final presentation summarising data analysis and findings:
+
+- *Note: These visualisations were used to support the final presentation, which was assembled in PowerPoint for delivery to the Rockbuster Stealth Management
+  Board.*

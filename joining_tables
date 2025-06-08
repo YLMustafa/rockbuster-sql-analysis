@@ -1,0 +1,67 @@
+01. Top 10 Countries by Customers
+-- Task: Identify the top 10 countries with the highest number of customers
+-- Objective: Help the business focus marketing and operations on high-value regions
+
+SELECT 
+  D.country,
+  COUNT(A.customer_id) AS customer_count
+FROM customer A
+INNER JOIN address B ON A.address_id = B.address_id
+INNER JOIN city C ON B.city_id = C.city_id
+INNER JOIN country D ON C.country_id = D.country_id
+GROUP BY D.country
+ORDER BY customer_count DESC
+LIMIT 10;
+
+02. Top 10 Cities in TOP 10 Countries 
+-- Task: Identify the top 10 cities by customer count from the top 10 countries
+-- Objective: Pinpoint high-density customer locations for potential local campaigns
+
+SELECT 
+  C.city,
+  D.country,
+  COUNT(A.customer_id) AS customer_count
+FROM customer A
+INNER JOIN address B ON A.address_id = B.address_id
+INNER JOIN city C ON B.city_id = C.city_id
+INNER JOIN country D ON C.country_id = D.country_id
+WHERE D.country IN (
+  'India', 'China', 'United States', 'Japan', 'Mexico',
+  'Brazil', 'Russian Federation', 'Philippines', 'Turkey', 'Indonesia'
+)
+GROUP BY C.city, D.country
+ORDER BY customer_count DESC
+LIMIT 10;
+
+03. Top Customers in Top Cities
+-- Task: Find the top 5 customers from the top 10 cities who have paid the highest total amounts
+-- Objective: Reward loyal customers by identifying them based on total payments
+-- Notes: 
+-- - Joining payment, customer, address, city, and country tables to get required details
+-- - Filtering for customers in the specified top 10 cities and countries
+-- - Grouping by customer and location to aggregate payments
+-- - Ordering by total payment in descending order and limiting to top 5
+
+SELECT 
+  B.customer_id, 
+  B.first_name AS customer_first_name, 
+  B.last_name AS customer_last_name, 
+  D.city, 
+  E.country,
+  SUM(A.amount) AS total_payment
+FROM payment A
+INNER JOIN customer B ON A.customer_id = B.customer_id
+INNER JOIN address C ON B.address_id = C.address_id
+INNER JOIN city D ON C.city_id = D.city_id
+INNER JOIN country E ON D.country_id = E.country_id
+WHERE D.city IN (
+  'Aurora', 'Atlixco', 'Xintai', 'Adoni', 'Dhule', 
+  'Kurashiki', 'Pingxiang', 'Sivas', 'Celaya', 'So Leopoldo'
+)
+AND E.country IN (
+  'India', 'China', 'United States', 'Japan', 'Mexico', 
+  'Brazil', 'Russian Federation', 'Philippines', 'Turkey', 'Indonesia'
+)
+GROUP BY B.customer_id, B.first_name, B.last_name, D.city, E.country
+ORDER BY total_payment DESC
+LIMIT 5;

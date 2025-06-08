@@ -1,4 +1,4 @@
-0.1 select film_id title.sql 
+01. select film_id title.sql 
 -- Task: Refine the query to return only needed columns from the film table
 -- Objective: Select only film_id and title to improve efficiency and readability
 -- Note: Avoid using SELECT * to prevent retrieving unnecessary data
@@ -6,7 +6,7 @@
 SELECT film_id, title
 FROM film;
 
-0.2 order selected film data.sql
+02. order selected film data.sql
 -- Task: Order selected film data by multiple criteria
 -- Objective: Select only relevant columns (title, release year, rental rate) and sort:
 --            1. Alphabetically by title (A–Z)

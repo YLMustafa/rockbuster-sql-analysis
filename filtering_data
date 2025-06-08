@@ -1,0 +1,58 @@
+01. film filtering queries.sql
+-- Task: Retrieve films matching various filtering conditions
+-- Objective: Provide targeted lists of films based on title, length, rental rate,
+--            rental duration, replacement cost, and rating.
+-- Purpose: Supports marketing, inventory management, and customer segmentation
+
+-- 1. Films with titles containing the word 'Uptown'
+SELECT film_id, title, description
+FROM film
+WHERE title LIKE '%Uptown%';
+
+-- 2. Films longer than 120 minutes and rental rate above 2.99
+SELECT film_id, title, description, length, rental_rate
+FROM film
+WHERE length > 120 AND rental_rate > 2.99;
+
+-- 3. Films with rental duration strictly between 3 and 7 days
+SELECT film_id, title, description, length, rental_duration
+FROM film
+WHERE rental_duration > 3 AND rental_duration < 7;
+
+-- 4. Films with replacement cost less than 14.99
+SELECT film_id, title, description, replacement_cost
+FROM film
+WHERE replacement_cost < 14.99;
+
+-- 5. Films rated PG or G
+SELECT film_id, title, description, rating
+FROM film
+WHERE rating = 'PG' OR rating = 'G';
+
+02. film rating aggregates.sql
+-- Task: Calculate aggregate statistics for films rated PG or G
+-- Objective: Provide the count of movies, average rental rate, maximum and minimum rental durations
+-- Purpose: To give the inventory team summarised insights on family-friendly films
+
+SELECT
+  COUNT(*) AS "count of movies",
+  AVG(rental_rate) AS "average movie rental rate",
+  MAX(rental_duration) AS "maximum rental duration",
+  MIN(rental_duration) AS "minimum rental duration"
+FROM film
+WHERE rating IN ('PG', 'G');
+
+03. film rating aggregates by rating.sql
+-- Task: Calculate aggregate statistics for films rated PG or G, grouped by rating
+-- Objective: Provide count, average rental rate, max and min rental durations per rating category
+-- Purpose: To give the customer team a breakdown of key metrics by film rating
+
+SELECT 
+  rating,
+  COUNT(*) AS "count of movies",
+  AVG(rental_rate) AS "average movie rental rate",
+  MAX(rental_duration) AS "maximum rental duration",
+  MIN(rental_duration) AS "minimum rental duration"
+FROM film
+WHERE rating IN ('PG', 'G')
+GROUP BY rating;

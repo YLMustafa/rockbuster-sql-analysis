@@ -1,4 +1,4 @@
-01. film filtering queries.sql
+01. Film Filtering Queries.sql
 -- Task: Retrieve films matching various filtering conditions
 -- Objective: Provide targeted lists of films based on title, length, rental rate,
 --            rental duration, replacement cost, and rating.
@@ -29,7 +29,7 @@ SELECT film_id, title, description, rating
 FROM film
 WHERE rating = 'PG' OR rating = 'G';
 
-02. film rating aggregates.sql
+02. Film Rating Aggregates.sql
 -- Task: Calculate aggregate statistics for films rated PG or G
 -- Objective: Provide the count of movies, average rental rate, maximum and minimum rental durations
 -- Purpose: To give the inventory team summarised insights on family-friendly films
@@ -42,7 +42,7 @@ SELECT
 FROM film
 WHERE rating IN ('PG', 'G');
 
-03. film rating aggregates by rating.sql
+03. Film Rating Aggregates by Rating.sql
 -- Task: Calculate aggregate statistics for films rated PG or G, grouped by rating
 -- Objective: Provide count, average rental rate, max and min rental durations per rating category
 -- Purpose: To give the customer team a breakdown of key metrics by film rating

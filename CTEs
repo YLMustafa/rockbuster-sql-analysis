@@ -1,4 +1,15 @@
 01. Top 5 Customers Based in Each Country.sql 
+- Task: Analyse top 5 highest-paying customers from the top 10 cities across top 10 countries
+-- Purpose: 
+--   1. To calculate the average amount paid by the top 5 customers.
+--   2. To assess how these high-value customers are distributed across countries.
+-- Approach:
+--   - Use a CTE (top_5_customers) to retrieve the top 5 customers by total payment amount.
+--   - Use a second CTE (top_customers) to:
+--       - Count the total number of customers per country.
+--       - Count how many of the top 5 customers fall within each country.
+--   - Final SELECT returns a comparison of total customers vs. top customers per country.
+
 -- Step 1: Define CTE to calculate the top 5 customers by total amount paid
 WITH top_5_customers AS (
   SELECT 

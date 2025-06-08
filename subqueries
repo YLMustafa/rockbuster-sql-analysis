@@ -1,4 +1,4 @@
-01. Average Payment Top Customers
+01. Average Payment Top Customers.sql
 -- Task: Calculate the average amount paid by the top 5 customers from the top 10 cities
 -- Purpose: To analyse spending behaviour of the highest-paying customers in high-density customer regions
 -- Approach:
@@ -35,7 +35,7 @@ FROM (
   LIMIT 5
 ) AS total_amount_paid;
 
-02. Top Customers by Country
+02. Top Customers by Country.sql
 -- Task: Find how many of the top 5 customers are based within each country
 -- Output:
 --   - country: the name of the country

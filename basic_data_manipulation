@@ -1,0 +1,37 @@
+0.1 Slecet film_id title 
+-- Task: Refine the query to return only needed columns from the film table
+-- Objective: Select only film_id and title to improve efficiency and readability
+-- Note: Avoid using SELECT * to prevent retrieving unnecessary data
+
+SELECT film_id, title
+FROM film;
+
+0.2 Order selected film data
+-- Task: Order selected film data by multiple criteria
+-- Objective: Select only relevant columns (title, release year, rental rate) and sort:
+--            1. Alphabetically by title (A–Z)
+--            2. By most recent release year (DESC)
+--            3. By highest rental rate (DESC)
+
+SELECT title, release_year, rental_rate
+FROM film
+ORDER BY title ASC, release_year DESC, rental_rate DESC;
+
+03. Rental stats by rating
+-- Task: Group rental data by rating category
+-- Objective: 
+--   1. Calculate the average rental rate for each film rating
+--   2. Determine the minimum and maximum rental duration for each rating
+-- Note: This information supports strategic pricing and content planning
+
+-- Query 1: Average rental rate by rating
+SELECT rating, AVG(rental_rate) AS avg_rental_rate
+FROM film
+GROUP BY rating;
+
+-- Query 2: Minimum and maximum rental duration by rating
+SELECT rating, 
+       MIN(rental_duration) AS min_duration, 
+       MAX(rental_duration) AS max_duration
+FROM film
+GROUP BY rating;

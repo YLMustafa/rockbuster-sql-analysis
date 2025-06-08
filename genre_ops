@@ -1,4 +1,4 @@
-01. Existing Genres.sql
+01. Existing Genres
 -- Task: Identify existing film genres in the category table
 -- Objective: Determine which genres Rockbuster currently offers
 -- Output: List of category IDs and corresponding genre names
@@ -6,7 +6,7 @@
 SELECT category_id, name
 FROM category;
 
-02. Add New Genres.sql
+02. Add New Genres
 -- Task: Add new film genres to the category table
 -- Objective: Insert Thriller, Crime, Mystery, Romance, and War as new genres
 
@@ -18,21 +18,23 @@ VALUES
   ('Romance'),
   ('War');
 
-03. Update African Egg Genre.sql
+03. Update African Egg Genre
 -- Task: Update the genre of the film 'African Egg' to Thriller
 -- Objective: Identify the film_id and set its category_id to Thriller (category_id = 17)
 
 -- Step 1: Find the film_id for 'African Egg'
+
 SELECT film_id, title
 FROM film
 WHERE title = 'African Egg';
 
 -- Step 2: Update the genre to 'Thriller' (category_id = 17)
+
 UPDATE film_category
 SET category_id = 17
 WHERE film_id = 5;
 
-04. Delete Mystery Genre.sql
+04. Delete Mystery Genre
 -- Task: Delete the 'Mystery' genre from the category table
 -- Objective: Remove the genre due to low movie count in this category
 

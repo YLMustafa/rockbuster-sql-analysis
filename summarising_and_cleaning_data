@@ -1,0 +1,232 @@
+01. check for duplicates in film table
+-- Task: Check the film table for duplicate rows (dirty data)
+-- Objective: Identify any non-uniform or duplicate records in the film table
+-- Method: Group by all relevant columns and count occurrences greater than 1
+-- Result: No duplicates found in this instance
+
+SELECT 
+  film_id, 
+  title, 
+  description, 
+  release_year, 
+  language_id, 
+  length, 
+  rating,
+  COUNT(*) AS count_of_occurrences
+FROM film
+GROUP BY film_id, title, description, release_year, language_id, length, rating
+HAVING COUNT(*) > 1;
+
+--  If duplicates were found, a view could be created to clean data like this:
+CREATE VIEW film_no_duplicates AS
+SELECT 
+  film_id, 
+  title, 
+  description, 
+  release_year, 
+  language_id, 
+  length, 
+  rating
+FROM film
+GROUP BY film_id, title, description, release_year, language_id, length, rating;
+
+-- To clean non-uniform data in the rating column, an UPDATE statement like this can be used:
+UPDATE film
+SET rating = 'G'
+WHERE rating IN ('gen', 'g', 'General');
+
+02. check missing values from film table.sql
+-- Task: Identify missing (NULL) values in the 'film' table
+-- Objective: Check if any rows have missing values in all key columns
+-- Note: It's unlikely a row would have *all* fields missing, but this checks for complete null entries
+
+
+SELECT *
+FROM film
+WHERE film_id IS NULL
+  AND title IS NULL
+  AND description IS NULL
+  AND release_year IS NULL
+  AND language_id IS NULL
+  AND length IS NULL
+  AND rating IS NULL;
+
+03. check for dupicates in customer table.sql
+-- Task: Check for duplicate records in the 'customer' table
+-- Objective: Identify rows with the same customer details that may have been entered more than once
+-- Result: No duplicate records were found in the 'customer' table.
+
+SELECT 
+  customer_id, 
+  store_id, 
+  first_name, 
+  last_name, 
+  email, 
+  address_id,
+  COUNT(*) AS count_of_occurrences
+FROM customer
+GROUP BY 
+  customer_id, 
+  store_id, 
+  first_name, 
+  last_name, 
+  email, 
+  address_id
+HAVING COUNT(*) > 1;
+
+If duplicates had been present, the following view could be created to retain only unique records:
+CREATE VIEW customer_no_duplicates AS
+SELECT 
+  customer_id, 
+  store_id, 
+  first_name, 
+  last_name, 
+  email, 
+  address_id
+FROM customer
+GROUP BY 
+  customer_id, 
+  store_id, 
+  first_name, 
+  last_name, 
+  email, 
+  address_id;
+
+-- To clean non-uniform data (e.g., inconsistent store_id entries), the UPDATE statement can be used:
+UPDATE customer
+SET store_id = 1
+WHERE store_id IN (1, 2); -- Example: standardizing store_id to 1
+
+04. check missing values from customer table.sql
+-- Task: Identify missing (NULL) values in the 'customer' table
+-- Objective: Detect any rows where all important customer fields are completely missing
+-- Result: No records were found where all fields are NULL.
+
+SELECT *
+FROM customer
+WHERE customer_id IS NULL
+  AND store_id IS NULL
+  AND first_name IS NULL
+  AND last_name IS NULL
+  AND email IS NULL
+  AND address_id IS NULL;
+
+05. Summarise film table statistics.sql 
+-- 🎯 Task: Calculate descriptive statistics for the 'film' table
+-- 🔍 Objective: Summarise both numerical and non-numerical fields to better understand the dataset
+
+-- 1. Descriptive stats for 'release_year'
+SELECT
+  MIN(release_year) AS min_release_year,
+  MAX(release_year) AS max_release_year,
+  AVG(release_year) AS avg_release_year,
+  COUNT(release_year) AS count_release_year,
+  COUNT(*) AS total_rows
+FROM film;
+
+-- 2. Descriptive stats for 'rental_duration'
+SELECT
+  MIN(rental_duration) AS min_rental_duration,
+  MAX(rental_duration) AS max_rental_duration,
+  AVG(rental_duration) AS avg_rental_duration,
+  COUNT(rental_duration) AS count_rental_duration,
+  COUNT(*) AS total_rows
+FROM film;
+
+-- 3. Descriptive stats for 'rental_rate'
+SELECT
+  MIN(rental_rate) AS min_rental_rate,
+  MAX(rental_rate) AS max_rental_rate,
+  AVG(rental_rate) AS avg_rental_rate,
+  COUNT(rental_rate) AS count_rental_rate,
+  COUNT(*) AS total_rows
+FROM film;
+
+-- 4. Descriptive stats for 'length'
+SELECT
+  MIN(length) AS min_length,
+  MAX(length) AS max_length,
+  AVG(length) AS avg_length,
+  COUNT(length) AS count_length,
+  COUNT(*) AS total_rows
+FROM film;
+
+-- 5. Descriptive stats for 'replacement_cost'
+SELECT
+  MIN(replacement_cost) AS min_replacement_cost,
+  MAX(replacement_cost) AS max_replacement_cost,
+  AVG(replacement_cost) AS avg_replacement_cost,
+  COUNT(replacement_cost) AS count_replacement_cost,
+  COUNT(*) AS total_rows
+FROM film;
+
+-- 6. Mode (most common value) for 'title'
+SELECT MODE() WITHIN GROUP (ORDER BY title) AS mode_title
+FROM film;
+
+-- 7. Mode for 'special_features'
+SELECT MODE() WITHIN GROUP (ORDER BY special_features) AS mode_special_features
+FROM film;
+
+-- 8. Mode for 'rating'
+SELECT MODE() WITHIN GROUP (ORDER BY rating) AS mode_rating
+FROM film;
+
+06. Summarise customer table statistics.sql 
+-- 🎯 Task: Calculate descriptive statistics for the 'customer' table
+-- 🔍 Objective: Summarize both numerical and non-numerical fields to better understand the customer data
+
+-- 1. Mode (most common value) for 'first_name'
+SELECT MODE() WITHIN GROUP (ORDER BY first_name) AS mode_first_name
+FROM customer;
+
+-- 2. Mode for 'last_name'
+SELECT MODE() WITHIN GROUP (ORDER BY last_name) AS mode_last_name
+FROM customer;
+
+-- 3. Mode for 'activebool' (boolean indicator of customer activity)
+SELECT MODE() WITHIN GROUP (ORDER BY activebool) AS mode_active_status
+FROM customer;
+
+-- 4. Descriptive stats for 'address_id'
+SELECT
+  MIN(address_id) AS min_address_id,
+  MAX(address_id) AS max_address_id,
+  AVG(address_id) AS avg_address_id,
+  COUNT(address_id) AS count_address_id,
+  COUNT(*) AS total_rows
+FROM customer;
+
+-- 5. Descriptive stats for 'store_id'
+SELECT
+  MIN(store_id) AS min_store_id,
+  MAX(store_id) AS max_store_id,
+  AVG(store_id) AS avg_store_id,
+  COUNT(store_id) AS count_store_id,
+  COUNT(*) AS total_rows
+FROM customer;
+
+-- 6. Descriptive stats for 'create_date'
+SELECT
+  MIN(create_date) AS min_create_date,
+  MAX(create_date) AS max_create_date,
+  COUNT(create_date) AS count_create_date,
+  COUNT(*) AS total_rows
+FROM customer;
+
+-- 7. Descriptive stats for 'last_update'
+SELECT
+  MIN(last_update) AS min_last_update,
+  MAX(last_update) AS max_last_update,
+  COUNT(last_update) AS count_last_update,
+  COUNT(*) AS total_rows
+FROM customer;
+
+-- 8. Descriptive stats for 'active' field (1 for active, 0 for inactive)
+SELECT
+  MIN(active) AS min_active,
+  MAX(active) AS max_active,
+  AVG(active) AS avg_active,
+  COUNT(active) AS count_active,
+  COUNT(*) AS total_rows
+FROM customer;

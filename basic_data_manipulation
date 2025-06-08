@@ -1,4 +1,4 @@
-0.1 Slecet film_id title 
+0.1 select film_id title.sql 
 -- Task: Refine the query to return only needed columns from the film table
 -- Objective: Select only film_id and title to improve efficiency and readability
 -- Note: Avoid using SELECT * to prevent retrieving unnecessary data
@@ -6,7 +6,7 @@
 SELECT film_id, title
 FROM film;
 
-0.2 Order selected film data
+0.2 order selected film data.sql
 -- Task: Order selected film data by multiple criteria
 -- Objective: Select only relevant columns (title, release year, rental rate) and sort:
 --            1. Alphabetically by title (A–Z)
@@ -17,7 +17,7 @@ SELECT title, release_year, rental_rate
 FROM film
 ORDER BY title ASC, release_year DESC, rental_rate DESC;
 
-03. Rental stats by rating
+03. rental stats by rating.sql
 -- Task: Group rental data by rating category
 -- Objective: 
 --   1. Calculate the average rental rate for each film rating

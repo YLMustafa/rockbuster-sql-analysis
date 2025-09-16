@@ -33,7 +33,7 @@ It was provided as part of the Rockbuster Stealth case study project and loaded 
 
 - ### Tableau Dashboard
 - Graphs and visualisations created using Tableau can be viewed here:
-- [Tableau Public Link] (https://public.tableau.com/app/profile/leyla.efe/viz/RockbusterDataAnalysisProjectv2/Story1?publish=yes)
+- [Tableau Public Link] ([3.10_Presenting SQL Results_Edited.pdf](https://public.tableau.com/app/profile/yaseminmustafa/vizzes)
 
 - ### Powerpoint Presentation
 - Final presentation summarising data analysis and findings:

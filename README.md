@@ -37,7 +37,7 @@ It was provided as part of the Rockbuster Stealth case study project and loaded 
 
 - ### Powerpoint Presentation
 - Final presentation summarising data analysis and findings:
-- [Download PowerPoint Presentation][3.10_Presenting SQL Results_Edited.pdf]
+- [Download PowerPoint Presentation](3.10_Presenting SQL Results_Edited.pdf)
 
 - *Note: These visualisations were used to support the final presentation, which was assembled in PowerPoint for delivery to the Rockbuster Stealth Management
   Board.*
